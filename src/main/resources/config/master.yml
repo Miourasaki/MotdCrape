@@ -1,0 +1,52 @@
+# MotdCrape Plugin Master Configuration ☆⌒(*＾-゜)v !!
+
+# Set default profile;
+# That is, the Motd displayed when any additional conditions are not met, or there are no conditions;
+# !!! When modifying this item through the file editor, you need to reload the configuration file !!!
+default-config: "default"
+
+# Debug mode settings;
+# ``` for you tips:
+# You can use the command /motdcrape:motdcdebug to turn debug mode on or off;
+# Different server cores may have different instructions. Please refer to the documentation for details;
+# ···
+maintain:
+  # Enable debug mode
+  # !!! When modifying this item through the file editor, you need to reload the configuration file !!!
+  enabled: false
+
+  # Enable component mode. Component mode uses like XML tag syntax. Specific documentation ↓
+  # https://motdcrape.dev-m.io/docs/component-mode
+  # !!! Component mode only supports game and server versions 1.16+ !!!
+  component-mode: true
+  # Contents in this list will appear on the screen when players try to log in;
+  # !!! the "§" symbol cannot be used in component mode !!!
+  # Please refer to the specific list of "§" symbols ↓
+  # https://minecraft.tools/en/color-code.php
+  list:
+    - "<u><color:red>The server has been <b>maintained</b>!</color:red></u>"
+    - "<u><hex:#123456>The server has been <i>maintained</i>!!</hex:#123456></u>"
+    - "<u><b><gradient:#fc0000:#fc7575>The server has been maintained!!!</gradient:#fc0000:#fc7575></b></u> "
+    - "                                  —— by <hex:#969bb3><underlined>MotdCrape</underlined></hex:#969bb3>"
+
+
+# Here are the decision rules;
+# !!! This rule has an execution order, from front to back. !!!
+rules:
+
+  - # This is the name of the rule, it has no use
+    name: old
+    # Here is the rule determination expression, please refer to the specific document ↓
+    # https://motdcrape.dev-m.io/docs/rule-judgment
+    rule: protocol < 735
+    # When this rule evaluates to true, the profile that will be enabled
+    config: "old"
+
+
+  - # Of course, you can modify this rule
+    # but this will prevent players from knowing the server status on the ServerList page;
+    name: maintain
+    # The rule maintain means that this rule is judged to be true when debugging mode is turned on;
+    rule: maintain
+    # motd configuration file when debug mode is enabled;
+    config: "maintain"

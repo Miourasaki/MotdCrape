@@ -1,0 +1,67 @@
+# MotdCrape Default Configuration (≧∇≦)ﾉ
+
+# Enable Replace icons with "{config_name}.png" files under "MotdCrape/icons"
+# !!! icons must be 64x64 png images !!!
+icon: true
+
+
+# This object is used to modify the return Motd;
+motd:
+  # Enable motd modification;
+  enabled: true
+  # Enable component mode. Component mode uses like XML tag syntax. Specific documentation ↓
+  # https://motdcrape.dev-m.io/docs/component-mode
+  # !!! Component mode only supports game and server versions 1.16+ !!!
+  component-mode: true
+  # motd content;
+  # !!! Maximum two lines, the "§" symbol cannot be used in component mode !!!
+  # Please refer to the specific list of "§" symbols ↓
+  # https://minecraft.tools/en/color-code.php
+  list:
+    - "<b><gradient:#f6f1df:#7079a4>A Minecraft Server! (〃＞目＜)</gradient:#f6f1df:#7079a4></b>"
+    - "<u><color:light_gray>Motd <i>Support</i></color:light_gray></u> > <underlined>MotdCrape</underlined>"
+
+# This object is used to modify player information;
+player:
+  # Enable player count modification;
+  count-enabled: true
+  # Maximum number of players displayed;
+  # !!! Only the displayed quantity can be modified. !!!
+  # !!! Please modify the actual quantity in the corresponding server configuration file. !!!
+  max: 0
+  # This item is only used to disguise the number of online players;
+  online: default
+
+  # Enable player list modification;
+  # That is, content suspended on the number of players or version name;
+  list-enabled: true
+  list:
+    - "§eHello, World!"
+    - "§5Hello, MotdCrape"
+
+  # When "list-enable" is off and this option is numeric,
+  # the floating list will display the specified number of players;
+  list-player: false
+
+# This object is used to modify the returned version information;
+version:
+  # Enable version information modification;
+  enabled: true
+
+  # Modifying the version name can avoid crawling the server using the core of websites like "mcstatus.io";
+  # At the same time, if the returned protocol version does not match,
+  # it will be displayed in red on the client and supports the "§" symbol;
+  # default, to not modify
+  name: "MotdCrape"
+  # Modify the returned protocol version
+  # For specific protocol version and game version comparison table, please refer to ↓
+  # https://wiki.vg/Protocol_version_numbers
+  # default, to not modify
+  # ``` For you tips:
+  # You can try to use option "max" or 0 to make the client always display the version name,
+  # to achieve the effect of 3 lines of mot
+  # !!! When using this method, the client will not be able to show the delay!
+  # And "Version Mismatch" will be displayed in the floating box. !!!
+  # ```
+  protocol: default
+

@@ -1,0 +1,8 @@
+name: MotdCrape
+version: ${project.version}
+main: net.miourasaki.MotdCrape.Spigot
+prefix: MotdCrape
+load: STARTUP
+authors: [Miourasaki]
+description: A Simple Motd Plugin on Bungee and Spigot
+website: motdcrape.dev-m.io

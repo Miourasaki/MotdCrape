@@ -1,0 +1,30 @@
+# MotdCrape Old Minecraft Version Configuration (≧∇≦)ﾉ
+
+icon: true
+
+
+motd:
+  enabled: true
+  component-mode: false
+  list:
+    - "§c§lServer in maintain!! (〃＞目＜)"
+    - "§8§o§nMotd Support > MotdCrape"
+
+player:
+  count-enabled: true
+  max: 0
+  online: default
+
+  list-enabled: true
+  list:
+    - "§eHello, World!"
+    - "§5Hello, MotdCrape"
+
+  list-player: false
+
+version:
+  enabled: true
+
+  name: "MotdCrape"
+  protocol: default
+
