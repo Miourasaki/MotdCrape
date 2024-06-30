@@ -7,7 +7,7 @@ default-config: "default"
 
 # Debug mode settings;
 # ``` for you tips:
-# You can use the command /motdcrape:motdcdebug to turn debug mode on or off;
+# You can use the command /motdcrape debug to turn debug mode on or off;
 # Different server cores may have different instructions. Please refer to the documentation for details;
 # ···
 maintain:
