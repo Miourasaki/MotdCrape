@@ -1,5 +1,5 @@
 name: MotdCrape
-version: ${project.version}
+version: 0.1.1
 main: net.miourasaki.motdcrape.BungeePlugin
 author: Miourasaki
 
