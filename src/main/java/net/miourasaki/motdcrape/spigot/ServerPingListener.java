@@ -1,5 +1,6 @@
 //package net.miourasaki.motdcrape.spigot;
 //
+//import net.md_5.bungee.api.Favicon;
 //import net.md_5.bungee.api.chat.BaseComponent;
 //import net.md_5.bungee.api.chat.TextComponent;
 //import net.md_5.bungee.api.plugin.Listener;
@@ -10,7 +11,9 @@
 //import net.miourasaki.motdcrape.config.ImageFile;
 //import org.bukkit.configuration.Configuration;
 //import org.bukkit.event.EventHandler;
+//import org.bukkit.event.HandlerList;
 //import org.bukkit.event.server.ServerListPingEvent;
+//import org.bukkit.util.CachedServerIcon;
 //
 //import java.awt.image.BufferedImage;
 //import java.io.IOException;
@@ -28,60 +31,60 @@
 //        SpigotConfigObject spigotConfigObject;
 //        spigotConfigObject = SpigotPlugin.defaultConfig;
 //
-//        List<?> ruleList = masterConfiguration.getList("rules");
-//        for (Object ruleObject : ruleList) {
-//            LinkedHashMap<String, String> ruleMap = (LinkedHashMap<String, String>) ruleObject;
-//            String rule = ruleMap.get("rule");
-//            String config = ruleMap.get("config");
-//            boolean ruleActive = false;
-//
-//            if (rule.split("\\s+").length == 3) {
-//                String clientProtocol = "" + e.getEventName().getVersion();
-//                String result = rule.replace("protocol", clientProtocol);
-//                String[] parts = result.split("\\s+");
-//
-//                String leftOperandStr = parts[0];
-//                String operator = parts[1];
-//                String rightOperandStr = parts[2];
-//
-//                // 2. 转换操作数为数值
-//                int leftOperand = Integer.parseInt(leftOperandStr);
-//                int rightOperand = Integer.parseInt(rightOperandStr);
-//
-//                // 3. 执行比较操作
-//                switch (operator) {
-//                    case "<":
-//                        ruleActive = leftOperand < rightOperand;
-//                        break;
-//                    case ">":
-//                        ruleActive = leftOperand > rightOperand;
-//                        break;
-//                    case "<=":
-//                        ruleActive = leftOperand <= rightOperand;
-//                        break;
-//                    case ">=":
-//                        ruleActive = leftOperand >= rightOperand;
-//                        break;
-//                    case "==":
-//                        ruleActive = leftOperand == rightOperand;
-//                        break;
-//                    case "!=":
-//                        ruleActive = leftOperand != rightOperand;
-//                        break;
-//                }
-//
-//
-//            }
-//
-//            if (rule.equals("maintain") && BungeePlugin.maintainMode) {
-//                ruleActive = true;
-//            }
-//
-//            if (ruleActive) {
-//                spigotConfigObject = BungeePlugin.otherConfig.get(config);
-//            }
-//
-//        }
+////        List<?> ruleList = masterConfiguration.getList("rules");
+////        for (Object ruleObject : ruleList) {
+////            LinkedHashMap<String, String> ruleMap = (LinkedHashMap<String, String>) ruleObject;
+////            String rule = ruleMap.get("rule");
+////            String config = ruleMap.get("config");
+////            boolean ruleActive = false;
+////
+////            if (rule.split("\\s+").length == 3) {
+////                String clientProtocol = "" + e.getEventName().getVersion();
+////                String result = rule.replace("protocol", clientProtocol);
+////                String[] parts = result.split("\\s+");
+////
+////                String leftOperandStr = parts[0];
+////                String operator = parts[1];
+////                String rightOperandStr = parts[2];
+////
+////                // 2. 转换操作数为数值
+////                int leftOperand = Integer.parseInt(leftOperandStr);
+////                int rightOperand = Integer.parseInt(rightOperandStr);
+////
+////                // 3. 执行比较操作
+////                switch (operator) {
+////                    case "<":
+////                        ruleActive = leftOperand < rightOperand;
+////                        break;
+////                    case ">":
+////                        ruleActive = leftOperand > rightOperand;
+////                        break;
+////                    case "<=":
+////                        ruleActive = leftOperand <= rightOperand;
+////                        break;
+////                    case ">=":
+////                        ruleActive = leftOperand >= rightOperand;
+////                        break;
+////                    case "==":
+////                        ruleActive = leftOperand == rightOperand;
+////                        break;
+////                    case "!=":
+////                        ruleActive = leftOperand != rightOperand;
+////                        break;
+////                }
+////
+////
+////            }
+////
+////            if (rule.equals("maintain") && BungeePlugin.maintainMode) {
+////                ruleActive = true;
+////            }
+////
+////            if (ruleActive) {
+////                spigotConfigObject = BungeePlugin.otherConfig.get(config);
+////            }
+////
+////        }
 //
 //
 //
@@ -91,7 +94,7 @@
 //
 //
 //        // 获取信息对象
-//        ServerPing ping = e.getResponse(); // 获取 PingList 对象
+//        HandlerList ping = e.getHandlers(); // 获取 PingList 对象
 //        ServerPing.Players players = ping.getPlayers(); // 获取 玩家信息 对象
 //        ServerPing.Protocol protocol = ping.getVersion(); // 获取 版本信息 对象
 ////        ServerPing.ModInfo modInfo = ping.getModinfo(); // 获取 模组信息 对象
@@ -166,36 +169,36 @@
 //        boolean enableIcon = configuration.getBoolean("icon");
 //        if (enableIcon) {
 //            // 实现图标替换功能
-//            BufferedImage image = ImageFile.get(BungeePlugin.instance.getDataFolder(),configName);
+//            BufferedImage image = ImageFile.get(SpigotPlugin.instance.getDataFolder(),configName);
 //            if (image != null) {
-//                Favicon favicon = Favicon.create(image);
-//                ping.setFavicon(favicon);
+//                CachedServerIcon favicon = ServerI;
+//                e.setServerIcon();
 //            }
 //        }
 //
-//
-//        boolean enableMotd = configuration.getBoolean("motd.enabled");
-//        if (enableMotd) {
-//            boolean enableComponent = configuration.getBoolean("motd.component-mode");
-//            List<?> motdList = configuration.getList("motd.list");
-//            String motdLine1 = (String) motdList.get(0);
-//            String motdLine2 = (String) motdList.get(1);
-//            List<String> motdListString = new ArrayList<>();
-//            motdListString.add(motdLine1);
-//            motdListString.add(motdLine2);
-//            if (enableComponent) {
-//                BaseComponent baseComponent = new TextComponent();
-//                List<CrapeComponent> components = ComponentMotd.parse(motdListString);
-//
-//                LoginListener.resultComponent(baseComponent, components);
-//                ping.setDescriptionComponent(baseComponent);
-//            }else {
-//                String motdResult = motdLine1 + "\n" + motdLine2;
-//                ping.setDescription(motdResult);
-//            }
-//        }
+////
+////        boolean enableMotd = configuration.getBoolean("motd.enabled");
+////        if (enableMotd) {
+////            boolean enableComponent = configuration.getBoolean("motd.component-mode");
+////            List<?> motdList = configuration.getList("motd.list");
+////            String motdLine1 = (String) motdList.get(0);
+////            String motdLine2 = (String) motdList.get(1);
+////            List<String> motdListString = new ArrayList<>();
+////            motdListString.add(motdLine1);
+////            motdListString.add(motdLine2);
+////            if (enableComponent) {
+////                BaseComponent baseComponent = new TextComponent();
+////                List<CrapeComponent> components = ComponentMotd.parse(motdListString);
+////
+////                LoginListener.resultComponent(baseComponent, components);
+////                ping.setDescriptionComponent(baseComponent);
+////            }else {
+////                String motdResult = motdLine1 + "\n" + motdLine2;
+////                ping.setDescription(motdResult);
+////            }
+////        }
 //
 //        // 设置返回PingList为修改后的对象
-//        e.setResponse(ping);
+////        e.setResponse(ping);
 //    }
 //}
