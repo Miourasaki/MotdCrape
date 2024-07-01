@@ -1,4 +1,4 @@
-package net.miourasaki.motdcrape.config;
+package net.miourasaki.crapelib.text.component;
 
 import java.awt.*;
 

@@ -4,8 +4,6 @@ package net.miourasaki.motdcrape.spigot;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.miourasaki.motdcrape.SpigotPlugin;
-import net.miourasaki.motdcrape.config.ComponentMotd;
-import net.miourasaki.motdcrape.config.CrapeComponent;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +12,6 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import java.io.IOException;
 import java.util.List;
 
-import static net.miourasaki.motdcrape.bungee.LoginListener.resultComponent;
 
 public class LoginListener implements Listener {
 
@@ -31,9 +28,8 @@ public class LoginListener implements Listener {
                 List<?> maintainList = configuration.getList("maintain.list");
                 if (enableComponent) {
                     BaseComponent baseComponent = new TextComponent();
-                    List<CrapeComponent> components = ComponentMotd.parse((List<String>) maintainList);
+//                    List<CrapeComponent> components = ComponentMotd.parse((List<String>) maintainList);
 
-                    resultComponent(baseComponent, components);
                     event.disallow(PlayerLoginEvent.Result.KICK_OTHER, baseComponent.toLegacyText());
                 }else {
 

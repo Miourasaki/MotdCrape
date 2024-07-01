@@ -1,18 +1,14 @@
 package net.miourasaki.motdcrape.bungee;
 
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.Favicon;
 import net.md_5.bungee.api.ServerPing;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.event.EventHandler;
+import net.miourasaki.crapelib.text.component.CrapeParser;
 import net.miourasaki.motdcrape.BungeePlugin;
-import net.miourasaki.motdcrape.config.ComponentMotd;
-import net.miourasaki.motdcrape.config.CrapeComponent;
 import net.miourasaki.motdcrape.config.ImageFile;
 
 import java.awt.image.BufferedImage;
@@ -87,7 +83,7 @@ public class ServerPingListener implements Listener {
         }
 
 
-
+        bungeeConfigObject.loadConfig();
         Configuration configuration = bungeeConfigObject.configuration;
         String configName = bungeeConfigObject.configName;
 
@@ -187,11 +183,8 @@ public class ServerPingListener implements Listener {
             motdListString.add(motdLine1);
             motdListString.add(motdLine2);
             if (enableComponent) {
-                BaseComponent baseComponent = new TextComponent();
-                List<CrapeComponent> components = ComponentMotd.parse(motdListString);
-
-                LoginListener.resultComponent(baseComponent, components);
-                ping.setDescriptionComponent(baseComponent);
+                CrapeParser crapeParser = new CrapeParser(motdListString);
+                ping.setDescriptionComponent(crapeParser.getBaseComponent());
             }else {
                 String motdResult = motdLine1 + "\n" + motdLine2;
                 ping.setDescription(motdResult);
