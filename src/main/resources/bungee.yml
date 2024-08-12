@@ -1,5 +1,5 @@
 name: MotdCrape
 version: 0.1.2
-main: net.miourasaki.motdcrape.BungeePlugin
+main: net.miourasaki.minecraft.motdcrape.BungeeImpl
 author: Miourasaki
 
